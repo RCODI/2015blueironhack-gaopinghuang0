@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": ";;;;AAKA,KAAM;EACL,KAAK,EAAE,IAAI;;;AAGZ,aAAe;EACb,MAAM,EAAE,cAAc;EACtB,eAAe,EAAE,QAAQ;EACzB,OAAO,EAAE,GAAG;;;AAEd,uBAAwB;EACtB,gBAAgB,EAAE,OAAO;;;AAE3B,wBAAyB;EACvB,gBAAgB,EAAE,OAAO",
+"sources": ["../sass/screen.scss"],
 "names": [],
 "file": "screen.css"
 }

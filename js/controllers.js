@@ -1,21 +1,46 @@
+(function() {
+
+var Helper = window.Helper = window.Helper || {};
+
+// var data = {
+// 	"datasetid"  : "GHCNDMS",
+// 	// datacategoryid= ANNTEMP
+// 	// datatypeid = "MNTM"
+// 	"locationid" : "CITY:US180006",
+// 	"startdate"  : "2015-01-01",
+// 	"enddate"	 : "2015-11-15"
+// };
+
+var settings = {
+	"datasetid"  : "GHCND",
+	"locationid" : "CITY:US180006",
+	"startdate"  : "2015-10-01",
+	"enddate"	 : "2015-10-01"
+};
 
 app.controller("tempCtrl", function($scope, $http) {
 	$scope.fetch = function(typeid, data) {
-		$http({
-			method: "GET",
-			url: "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes"+typeid,
+		$http.get("http://www.ncdc.noaa.gov/cdo-web/api/v2/data", {
+			params: settings,
 			headers: {"Content-Type": "application/json",
-			 'token': 'lZKvwmkJKfYKGxEbtjcOKTUAzQsXQQdp'}
+			'token': 'lZKvwmkJKfYKGxEbtjcOKTUAzQsXQQdp'}
 		}).then(on_success, on_error);
 	};
 
-	$scope.fetch('/ACMH');
+	$scope.fetch();
 
 	function on_success(response) {
-		console.log(response.data);
+		Helper.print(response.data);
+		$scope.tempResults = response.data.results;
 	}
 
 	function on_error(response) {
 		console.log(response);
 	}
 });
+
+
+
+
+
+})();

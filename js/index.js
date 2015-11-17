@@ -1,5 +1,9 @@
 (function() {
-	$(document).ready(function() {
-		console.log("ready");
-	});
+
+var Helper = window.Helper = window.Helper || {};
+
+$(document).ready(function() {
+	Helper.print("ready");
+});
+
 })();

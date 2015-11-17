@@ -18,13 +18,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]
     -->
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/angular.min.js"></script>
   </head>
   <body role="document">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">BlueIron</a>
+          <a class="navbar-brand" href="#">HouseHunter</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -35,8 +37,11 @@
     </nav>
     <div class="container" role="main" ng-app="myApp">
       <div class="jumbotron">
-        <h1>BlueIronHack</h1>
-        <p>My work will start soon from here.</p>
+        <h1>*Lafayette House Hunter</h1>
+        <p>This page will show a graph of climate using d3.js. (Now it's just a rough table using the data from Climate Data Online.) <br>
+        Also, the page will have a Google map that shows all the apartments. <br>
+        When clicking on one apartment, shows the details.
+        </p>
       </div>
       <div class="page-header">
         <h1>Progress</h1>
@@ -46,15 +51,39 @@
           <span class="sr-only">10% complete</span>
         </div>
       </div>
-      <div class="temp-wrap" ng-controller="tempCtrl"></div>
+      <div class="page-header">
+        <h1>Climate</h1>
+      </div>
+      <div class="row temp-wrap" ng-controller="tempCtrl">
+      <div class="col-sm-12 col-md-12">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>DataType</th>
+              <th>Attributes</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="x in tempResults">
+            <td>{{ x.date }}</td>
+            <td>{{ x.datatype}}</td>
+            <td>{{ x.attributes}}</td>
+            <td>{{ x.value}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
 
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/d3.js"></script>
+    <script src="js/helper.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/index.js"></script>
