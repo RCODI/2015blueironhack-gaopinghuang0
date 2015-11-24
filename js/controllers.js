@@ -12,9 +12,11 @@ var Helper = window.Helper = window.Helper || {};
 // };
 
 var settings = {
-	"datasetid"  : "GHCND",
+	"datasetid"  : "GHCNDMS",
 	"locationid" : "CITY:US180006",
-	"startdate"  : "2015-10-01",
+	"datacategoryid": "TEMP",
+	"datatypeid": "MNTM",
+	"startdate"  : "2015-09-01",
 	"enddate"	 : "2015-10-01"
 };
 
