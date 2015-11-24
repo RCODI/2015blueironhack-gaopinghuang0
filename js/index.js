@@ -1,9 +1,30 @@
-(function() {
+function initMap() {
 
-var Helper = window.Helper = window.Helper || {};
+	var latlng,
+		map, 
+		marker,
+		infowindow;
 
-$(document).ready(function() {
-	Helper.print("ready");
-});
+	latlng = new google.maps.LatLng(40.4258333, -86.9080556);
 
-})();
+	map = new google.maps.Map(document.getElementById('mapWrapper'), {
+		center: latlng,
+		zoom: 14
+	});
+
+	marker = new google.maps.Marker({
+		position: latlng,
+		map: map,
+		title: "West Lafayette"
+	});
+
+	infowindow = new google.maps.InfoWindow({
+		content: ""
+	});
+
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent("West Lafayette");
+		infowindow.open(map, marker);
+	});
+}
+
