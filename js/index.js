@@ -1,25 +1,26 @@
 var Helper = window.Helper = window.Helper || {};
 
-var url = "http://www.ncdc.noaa.gov/swdiws/csv/nx3hail:inv/20100101:20121231";
 
-app.controller("tempCtrl", function($scope, $http) {
-	$scope.fetch = function(typeid, data) {
-		$http.get(url, {
-			// params: {'radius': "15.0", 'center': "40.4,-86.9"},
-			// headers: {"Content-Type": "application/json"}
-		}).then(on_success, on_error);
+app.controller("climateCtrl", function(dataConfig, $scope, $http) {
+	$scope.climate = {
+		month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+		data: [],
+	};
+	$scope.yearSelected = 2014;
+
+	$scope.drawClimateChart = function(year) {
+		var d = dataConfig.getClimateData(year);
+		d.then(function(data) {
+			if (!!data.results) {
+				$scope.climate.data = data.results.map(function(obj) {
+					return obj.value/10.0 * 1.8 + 32;
+				});
+				drawD3LineChart($scope.climate);
+			}
+		});
 	};
 
-	$scope.fetch();
-
-	function on_success(response) {
-		Helper.print(response.data);
-		$scope.tempResults = response.data.results;
-	}
-
-	function on_error(response) {
-		console.log(response);
-	}
+	$scope.drawClimateChart($scope.yearSelected);
 });
 
 
@@ -53,3 +54,21 @@ function initMap() {
 	});
 }
 
+function drawD3LineChart(data) {
+	var chart = c3.generate({
+		bindto: ".climateWrapper",
+		data: {
+			columns: [
+				data.data
+			]
+		},
+		axis: {
+			y: {
+				label: {
+					text: 'MaxTemp (F)',
+					position: 'outer-middle'
+				}
+			}
+		}
+	});
+}

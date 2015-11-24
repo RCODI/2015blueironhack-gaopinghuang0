@@ -11,3 +11,9 @@ Currently, just open index.html with Chrome or Firefox.
 
 #### Keywords:
 safe and green room, climate
+
+#### Test Case
+Chrome and Firefox
+
+#### Technology
+angularjs, d3.js, c3.js
